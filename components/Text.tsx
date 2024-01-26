@@ -11,7 +11,7 @@ interface TextProps extends _TextProps {
 
 const Text = styled.Text<TextProps>`
   color: ${(props) => props.color || Colors.light.text};
-  font-size: ${(props) => props.size || 12};
+  font-size: ${(props) => props.size || 12}px;
   font-family: ${(props) => props.font || "AirBnbMedium"};
 `;
 

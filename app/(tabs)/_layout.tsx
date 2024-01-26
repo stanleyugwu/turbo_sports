@@ -1,43 +1,61 @@
-import React from 'react';
-import FontAwesome from '@expo/vector-icons/FontAwesome';
+import React from "react";
 import { Tabs } from "expo-router";
 
 import Colors from "@/constants/Colors";
-import { useColorScheme } from "@/components/useColorScheme";
-import { useClientOnlyValue } from "@/components/useClientOnlyValue";
+import TabBarImage from "@/components/TabBarImage";
 
-// You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
-function TabBarIcon(props: {
-  name: React.ComponentProps<typeof FontAwesome>["name"];
-  color: string;
-}) {
-  return <FontAwesome size={28} style={{ marginBottom: -3 }} {...props} />;
-}
+// Tab Bar Images
+import HomeImg from "@/assets/images/tab_icons/home.svg";
+import BetsImg from "@/assets/images/tab_icons/bets.svg";
+import PredictionsImg from "@/assets/images/tab_icons/predictions.svg";
+import MatchesImg from "@/assets/images/tab_icons/matches.svg";
+import FavouritesImg from "@/assets/images/tab_icons/favourites.svg";
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
+        tabBarActiveTintColor: Colors.light.tabIconSelected,
+        tabBarInactiveTintColor: Colors.light.tabIconDefault,
+        tabBarLabelStyle: { fontFamily: "PoppinsMedium", fontSize: 12 },
         // Disable the static render of the header on web
         // to prevent a hydration error in React Navigation v6.
-        headerShown: useClientOnlyValue(false, true),
+        headerShown: false,
       }}
     >
       <Tabs.Screen
         name="index"
         options={{
-          title: "Tab One",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: "Dashboard",
+          tabBarIcon: TabBarImage(HomeImg),
         }}
       />
       <Tabs.Screen
-        name="two"
+        name="bets"
         options={{
-          title: "Tab Two",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: "Bets",
+          tabBarIcon: TabBarImage(BetsImg),
+        }}
+      />
+      <Tabs.Screen
+        name="predictions"
+        options={{
+          title: "Predictions",
+          tabBarIcon: TabBarImage(PredictionsImg),
+        }}
+      />
+      <Tabs.Screen
+        name="matches"
+        options={{
+          title: "Matches",
+          tabBarIcon: TabBarImage(MatchesImg),
+        }}
+      />
+      <Tabs.Screen
+        name="favourites"
+        options={{
+          title: "Favourites",
+          tabBarIcon: TabBarImage(FavouritesImg),
         }}
       />
     </Tabs>
