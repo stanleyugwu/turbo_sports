@@ -14,6 +14,7 @@ import FavouritesImg from "@/assets/images/tab_icons/favourites.svg";
 export default function TabLayout() {
   return (
     <Tabs
+      initialRouteName="dashboard"
       screenOptions={{
         tabBarActiveTintColor: Colors.light.tabIconSelected,
         tabBarInactiveTintColor: Colors.light.tabIconDefault,
