@@ -14,7 +14,7 @@ const TabBarImageWrapper = styled.View`
 const StyledActiveBar = styled.View<TabIconProps>`
   width: 100%;
   height: ${(props) => (props.focused ? "3px" : "0px")};
-  border-radius: 100%;
+  border-radius: 999px;
   background-color: ${Colors.light.tabIconSelected};
   margin-bottom: 5px;
 `;
