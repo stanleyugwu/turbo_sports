@@ -3,8 +3,8 @@ import { ImageSourcePropType } from "react-native";
 // predictors
 import nigeriaFlag from "./images/predictors/nigeria_flag.png";
 import ivoryCostFlag from "./images/predictors/ivory_coast_flag.png";
-import predictor1 from "./images/predictors/profile1.png";
-import predictor2 from "./images/predictors/profile2.png";
+import topPredictor1 from "./images/predictors/profile1.png";
+import topPredictor2 from "./images/predictors/profile2.png";
 
 // matches
 import spainFlag from "@/assets/dashboard/images/matches/spain_flag.png";
@@ -16,37 +16,9 @@ import aston from "@/assets/dashboard/images/matches/aston.png";
 import liverpool from "@/assets/dashboard/images/matches/liverpool.png";
 import tottenham from "@/assets/dashboard/images/matches/tottenham.png";
 import southampton from "@/assets/dashboard/images/matches/southampton.png";
+import predictorImg from "@/assets/dashboard/images/predictor.png";
 
-interface Country {
-  name: string;
-  flagPic: ImageSourcePropType;
-}
-
-interface Team {
-  name: string;
-  score: number;
-  logo: ImageSourcePropType;
-}
-
-export interface Predictor {
-  position: string;
-  profilePic: ImageSourcePropType;
-  fullName: string;
-  country: Country;
-  rating: string;
-  streak: string;
-  accuracy: number;
-}
-
-export interface LiveMatch {
-  league: {
-    country: Country;
-    name: string;
-  };
-  time: string;
-  team1: Team;
-  team2: Team;
-}
+import { LiveMatch, Prediction, Predictor } from "@/types";
 
 export const PREDICTORS: Predictor[] = [
   {
@@ -59,7 +31,7 @@ export const PREDICTORS: Predictor[] = [
     streak: "9 of 10",
     position: "1st",
     accuracy: 90,
-    profilePic: predictor1,
+    profilePic: topPredictor1,
   },
   {
     fullName: "Keith Powers",
@@ -71,7 +43,7 @@ export const PREDICTORS: Predictor[] = [
     streak: "8 of 10",
     position: "2nd",
     accuracy: 90,
-    profilePic: predictor2,
+    profilePic: topPredictor2,
   },
   {
     fullName: "Eric James",
@@ -83,7 +55,7 @@ export const PREDICTORS: Predictor[] = [
     streak: "7 of 10",
     position: "3rd",
     accuracy: 85,
-    profilePic: predictor1,
+    profilePic: topPredictor1,
   },
 ];
 
@@ -114,5 +86,46 @@ export const MATCHES: LiveMatch[] = [
     time: "45",
     team1: { logo: tottenham, name: "Tottenham", score: 5 },
     team2: { logo: southampton, name: "Southampton", score: 2 },
+  },
+];
+
+export const PREDICTIONS: Prediction.Prediction[] = [
+  {
+    couponId: "abcd",
+    totalGames: 11,
+    totalOdds: 188,
+    totalReturns: "150%",
+    predictor: {
+      name: "John Bellion",
+      profilePic: predictorImg,
+    },
+    currentPredictions: [
+      {
+        prediction: "Over 1.5 odds",
+        team1: "Chelsea FC",
+        team2: "Manchester United",
+      },
+      {
+        prediction: "Over 1.5 odds",
+        team1: "Barcelona FC",
+        team2: "Southampton",
+      },
+      {
+        prediction: "Over 2.5 odds",
+        team1: "Real Madrid",
+        team2: "Aston Villa FC",
+      },
+    ],
+    previousPredictions: {
+      total: 5,
+      wins: 5,
+      predictions: [
+        { result: "win" },
+        { result: "win" },
+        { result: "win" },
+        { result: "win" },
+        { result: "win" },
+      ],
+    },
   },
 ];

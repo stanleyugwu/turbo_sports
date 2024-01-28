@@ -1,19 +1,18 @@
 import { Image, View, useWindowDimensions } from "react-native";
 import { Card } from "./PredictorCard";
-import { LiveMatch } from "@/assets/dashboard/data";
 import Row from "./Row";
 import Text from "./Text";
 import { FontAwesome } from "@expo/vector-icons";
 import Header from "./Header";
 import styled from "styled-components/native";
-
-const GRAY = "#00000080";
+import { LiveMatch } from "@/types";
+import Colors from "@/constants/Colors";
 
 interface LiveMatchCardProps {
   item: LiveMatch;
 }
 
-const MatchCard = styled(Card.Card)`
+export const MatchCard = styled(Card.Card)`
   justify-content: space-around;
 `;
 
@@ -53,16 +52,16 @@ function LiveMatchCard({ item }: LiveMatchCardProps) {
           source={item.league.country.flagPic}
           style={{ marginRight: 5 }}
         />
-        <Text font="AirBnbMedium" color={GRAY} size={10}>
+        <Text font="AirBnbMedium" color={Colors.light.gray} size={10}>
           {item.league.country.name}
         </Text>
         <FontAwesome
           name="caret-right"
           size={13}
-          color={GRAY}
+          color={Colors.light.gray}
           style={{ marginHorizontal: 8 }}
         />
-        <Text font="AirBnbMedium" color={GRAY} size={10}>
+        <Text font="AirBnbMedium" color={Colors.light.gray} size={10}>
           {item.league.name}
         </Text>
       </LeagueInfoRow>
@@ -84,11 +83,11 @@ function LiveMatchCard({ item }: LiveMatchCardProps) {
       <View style={{ width: "100%", alignSelf: "flex-end" }}>
         <Row>
           <Text>{item.team1.name}</Text>
-          <Text color={GRAY}>{item.team1.score}</Text>
+          <Text color={Colors.light.gray}>{item.team1.score}</Text>
         </Row>
-        <Row>
+        <Row style={{ marginTop: 5 }}>
           <Text>{item.team2.name}</Text>
-          <Text color={GRAY}>{item.team2.score}</Text>
+          <Text color={Colors.light.gray}>{item.team2.score}</Text>
         </Row>
       </View>
     </MatchCard>

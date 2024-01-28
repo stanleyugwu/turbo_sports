@@ -8,13 +8,25 @@ import pic2 from "@/assets/dashboard/images/profile_pic2.png";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { FontAwesome } from "@expo/vector-icons";
 import Colors from "@/constants/Colors";
-import { MATCHES, PREDICTORS } from "@/assets/dashboard/data";
+import { MATCHES, PREDICTIONS, PREDICTORS } from "@/assets/dashboard/data";
 import PredictorCard from "@/components/PredictorCard";
 import Header from "@/components/Header";
 import Row from "@/components/Row";
 import LiveIcon from "@/assets/dashboard/images/live.svg";
 import LiveMatchCard from "@/components/LiveMatchCard";
 import styled from "styled-components/native";
+import TabSectionButton from "@/components/TabSectionButton";
+import { useState } from "react";
+import HotPrediction from "@/components/HotPredictions";
+
+// renders predictions in hot predictions section
+const Predictions = () => (
+  <View style={{ marginHorizontal: 15 }}>
+    {PREDICTIONS.map((prediction, idx) => (
+      <HotPrediction prediction={prediction} key={idx} />
+    ))}
+  </View>
+);
 
 const ActiveMatchBar = styled.View<{ active?: boolean }>`
   width: ${(props) => (props.active ? "20px" : "10px")};
@@ -26,9 +38,11 @@ const ActiveMatchBar = styled.View<{ active?: boolean }>`
 `;
 
 export default function DashboardScreen() {
+  const [activeTabIdx, setActiveTabIdx] = useState(0);
+
   return (
     <SafeAreaView style={styles.containerStyle}>
-      <ScrollView>
+      <ScrollView nestedScrollEnabled>
         <StatusBar backgroundColor="#F6F6F6" style="dark" animated />
         <Header.Header>
           <Text font="PoppinsExtraBold" size={24} color="#237648">
@@ -110,7 +124,7 @@ export default function DashboardScreen() {
           </Row>
         </View>
         <FlatList
-          showsHorizontalScrollIndicator
+          showsHorizontalScrollIndicator={false}
           style={{
             flex: 1,
             paddingTop: 10,
@@ -122,6 +136,31 @@ export default function DashboardScreen() {
             return <LiveMatchCard item={item} />;
           }}
         />
+        <Row style={{ padding: 15 }}>
+          <View style={{ flexDirection: "row" }}>
+            <TabSectionButton
+              onPress={() => setActiveTabIdx(0)}
+              active={activeTabIdx === 0}
+              label="Hot Predictions"
+            />
+            <TabSectionButton
+              onPress={() => setActiveTabIdx(1)}
+              active={activeTabIdx === 1}
+              label="Upcoming Matches"
+            />
+          </View>
+        </Row>
+        {activeTabIdx === 0 ? (
+          <Predictions />
+        ) : (
+          <Text
+            style={{ textAlign: "center", marginTop: 20 }}
+            color={Colors.light.gray}
+            size={14}
+          >
+            No Upcoming matches
+          </Text>
+        )}
       </ScrollView>
     </SafeAreaView>
   );

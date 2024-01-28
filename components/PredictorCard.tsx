@@ -1,18 +1,18 @@
 import Colors from "@/constants/Colors";
 import styled from "styled-components/native";
-import { useWindowDimensions } from "react-native";
+import { Platform, useWindowDimensions } from "react-native";
 import Text from "@/components/Text";
 import PortfolioItem from "./PortfolioItem";
 import Header from "./Header";
-import { Predictor } from "@/assets/dashboard/data";
 import Row from "./Row";
+import { Predictor } from "@/types";
 
 interface PredictorCardProps {
   item: Predictor;
 }
 
 export const Card = {
-  Card: styled.View`
+  Card: styled.View.attrs({ style: { elevation: 10 } })`
     background-color: #fff;
     box-shadow: 0px 10px 10px #00000012;
     border-radius: 8px;
@@ -20,6 +20,7 @@ export const Card = {
     align-items: center;
     justify-content: center;
     margin: 0px 8px;
+    border: ${Platform.OS === "android" ? "1px solid #00000011" : "none"};
   `,
   PositionBadge: styled.View`
     padding: 4px;
