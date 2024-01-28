@@ -22,7 +22,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#1F9051"
-      }
+      },
+      "package": "com.devvie.turbo_sports"
     },
     "web": {
       "bundler": "metro",
